@@ -67,7 +67,7 @@ function SaveContact() {
     let numberId0 = document.getElementById('number0');
     let emailId0 = document.getElementById('email0');
 
-    SaveInputValue();
+    //SaveInputValue();
 
         if(inputName.value != '' && numberId0.value != '' && emailId0.value != '')
         {
@@ -107,15 +107,6 @@ function SaveContact() {
     }
 }
 }
-function SaveInputValue() {
-    Contact.name = $('#name').val();
-    for(let z = 0; z < Contact.number.length; z++){
-        Contact.number[z] = $('#number' + z).val();
-    }
-    for(let y = 0; y < Contact.email.length; y++){
-        Contact.email[y] = $('#email' + y).val();
-    }
-}
 //Логика переключения между списком контактов и формой добавления/редактирования контакта
 function OpenContactWindow(contact) {
 
@@ -137,7 +128,6 @@ function CloseContactWindow() {
     ReloadContactList(ContactsArray);
 }
 function ResetAddContactWindow() {
-    SaveInputValue();
     $('input').each(function () {
         $(this).val('');
     });
@@ -156,7 +146,7 @@ function ReloadContactList(currentArray) {
         if (x.name < y.name)
             return -1;
         return 0;
-    });
+    })};
 
     if (currentArray != ContactsArray) {
         for (let i = 0; i < currentArray.length; i++) {
@@ -168,7 +158,6 @@ function ReloadContactList(currentArray) {
             ContactListDraw(currentArray[i]);
         }
     }
-	}
 }
 //Отрисовка формы добавления и редактирования контакта
 function AddContactDrow() {
@@ -214,6 +203,8 @@ function AddContactDrow() {
                         if (!this.value.match(matchValue) || this.value.length > 22)
                         {
                             this.value = this.value.substr(0, this.value.length - 1);
+                        }else {
+                            Contact.name = this.value;
                         }
                     }
                 }
@@ -246,6 +237,8 @@ function AddContactDrow() {
                             if (isNaN(this.value+1) || this.value.length > 10)
                             {
                                 this.value = this.value.substr(0, this.value.length - 1);
+                            }else {
+                                Contact.number[l] = this.value;
                             }
                         }
                     },
@@ -290,6 +283,8 @@ function AddContactDrow() {
                             if (!this.value.match(matchValue) || this.value.length > 25)
                             {
                                 this.value = this.value.substr(0, this.value.length - 1);
+                            }else {
+                                Contact.email[h] = this.value;
                             }
                         }
                     },
@@ -330,7 +325,7 @@ function AddContactDrow() {
 
 }
 function AddNumber() {
-    Contact.number[Contact.number.length] = '';
+    Contact.number.push('');
     ResetAddContactWindow();
     OpenContactWindow(Contact);
 }
