@@ -1,0 +1,121 @@
+#body{
+    background: #5d4c44 url(../Image/Background-Image-Good-quality-HD.jpg);
+    font-weight: bold;
+}
+input{
+    background: rgba(255, 242, 95, 0.38);
+    font-weight: bold;
+    color: #120a9d;
+}
+.header, .add-contact-form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.text{
+    align-self: center;
+    border-radius: 40px;
+    background: #309d05;
+    color: #fffd09;
+}
+.text > h2{
+    margin: 5px 20px 5px 20px;
+}
+.search{
+    align-self: center;
+    margin: 5px 0px 5px 0px;
+
+}
+.search span{
+    display: block;
+    background: #120a9d;
+    text-align: center;
+    color: #fffd09;
+}
+.add-contact span{
+    display: block;
+    cursor: pointer;
+}
+.plus-minus-fields{
+    display: flex;
+    flex-wrap: wrap;
+}
+.button-minus-phone, .button-plus-phone, .button-minus-email, .button-plus-email{
+    align-self: center;
+    text-align: center;
+    background: #309d05;
+    color: #fffd09;
+    font-size: 18px;
+    width: 25px;
+    font-weight: 900;
+    cursor: pointer;
+    margin: 0 5px 0 5px;
+    border: ridge 3px #309d05;
+    border-radius: 50px;
+}
+.buttons{
+    display: flex;
+}
+.buttons div{
+    margin: 0 20px 0 20px;
+    border-radius: 20px;
+    background: #309d05;
+    color: #fffd09;
+    padding: 0 15px 0 15px;
+    cursor: pointer;
+    border: ridge 3px #309d05;
+}
+.list{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    border: solid 2px #120a9d;
+    width: 250px;
+    align-self: center;
+    margin: 2px 0 2px 0;
+    background: rgba(0, 0, 0, 0.34);
+    color: #fffd09;
+}
+.list:hover{
+    background: rgba(255, 253, 9, 0.3);
+    color: #120a9d;
+}
+.logo{
+    background: #309d05;
+    padding: 0 10px 0 10px;
+    cursor: pointer;
+    display: flex;
+    align-content: center;
+}
+.logospan{
+    color: #fffd09;
+    font-size: 40px;
+    align-self: center;
+}
+.contactdata{
+    padding-left: 5px;
+    display: block;
+}
+#add-contact{
+    display: none;
+}
+#contact-list{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: stretch;
+}
+.name, .phone, email{
+    display: block;
+}
+#removecontact{
+    align-self: center;
+    margin: 5px 20px 0 20px;
+    border: ridge 2px #309d05;
+    border-radius: 20px;
+    background: #309d05;
+    color: #900506;
+    padding: 0 15px 0 15px;
+    cursor: pointer;
+}
