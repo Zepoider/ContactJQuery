@@ -156,7 +156,7 @@ function ReloadContactList(currentArray) {
         if (x.name < y.name)
             return -1;
         return 0;
-    })};
+    });
 
     if (currentArray != ContactsArray) {
         for (let i = 0; i < currentArray.length; i++) {
@@ -168,6 +168,7 @@ function ReloadContactList(currentArray) {
             ContactListDraw(currentArray[i]);
         }
     }
+	}
 }
 //Отрисовка формы добавления и редактирования контакта
 function AddContactDrow() {
