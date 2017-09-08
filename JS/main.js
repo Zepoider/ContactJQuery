@@ -5,7 +5,10 @@ let createNewContact = true;
 let SearchArray = [];
 //Блок событий при отображении списка контактов
 $('#add-contact-button').click(function () {
-    AddNewContact();
+    $('#header').animate({opacity: 0});
+    $('#contact-list').animate({opacity: 0}, function () {
+        AddNewContact();
+    });
 });
 let inputSearch = document.getElementById('inputsearch');
 inputSearch.oninput = function () {
@@ -115,7 +118,6 @@ $('#contact-list, #header').hide();
 $ ('#add-contact').css('display', 'flex');
 
     AddContactDrow();
-
 }
 function CloseContactWindow() {
 
@@ -158,6 +160,7 @@ function ReloadContactList(currentArray) {
             ContactListDraw(currentArray[i]);
         }
     }
+    $('#contact-list, #header').animate({opacity: 1});
 }
 //Отрисовка формы добавления и редактирования контакта
 function AddContactDrow() {
@@ -215,7 +218,15 @@ function AddContactDrow() {
 
                 $('<div/>', {
                   class: 'search plus-minus-fields',
-                    id: 'phone-number-div'
+                    id: 'phone-number-div',
+                    on: {
+                      mouseenter: function () {
+                          $(this).children('.button-plus-phone, .button-minus-phone').show(300);
+                      },
+                      mouseleave: function () {
+                          $(this).children('.button-plus-phone, .button-minus-phone').hide(300);
+                      }
+                    }
                 }).append($('<div/>', {
                     class: 'button-minus-phone',
                     id: l,
@@ -227,7 +238,7 @@ function AddContactDrow() {
                                 Contact.number.splice(l, 1);
                             }
                         }
-                }}), $('<div/>').append(($('<span/>', {
+                }}).hide(), $('<div/>').append(($('<span/>', {
                     text: 'Phone Number'
                 })), $('<input/>', {
                     id: 'number' + l,
@@ -251,7 +262,7 @@ function AddContactDrow() {
                             AddNumber();
                         }
                     }
-                })).appendTo('#add-contact');
+                }).hide()).appendTo('#add-contact');
             }
         }
         if (element == 'email') {
@@ -259,7 +270,15 @@ function AddContactDrow() {
 
                 $('<div/>', {
                     class: 'search plus-minus-fields',
-                    id: 'email-div'
+                    id: 'email-div',
+                    on: {
+                        mouseenter: function () {
+                            $(this).children('.button-plus-email, .button-minus-email').show(300);
+                        },
+                        mouseleave: function () {
+                            $(this).children('.button-plus-email, .button-minus-email').hide(300);
+                        }
+                    }
                 }).append($('<div/>', {
                     class: 'button-minus-email',
                     id: h,
@@ -272,7 +291,7 @@ function AddContactDrow() {
                             }
                         }
                     }
-                }), $('<div/>').append(($('<span/>', {
+                }).hide(), $('<div/>').append(($('<span/>', {
                     text: 'E-mail Address'
                 })), $('<input/>', {
                     id: 'email' + h,
@@ -297,7 +316,7 @@ function AddContactDrow() {
                             AddMail();
                         }
                     }
-                })).appendTo('#add-contact');
+                }).hide()).appendTo('#add-contact');
             }
         }
     }
@@ -344,7 +363,10 @@ function ContactListDraw(contact) {
         id: 'logo' + contact.id,
         on: {
             click: function () {
-                EditContact(contact.id);
+                $('#header').animate({opacity: 0});
+                $('#contact-list').animate({opacity: 0}, function () {
+                    EditContact(contact.id);
+                });
             }
         }
     }).append($('<span/>', {
