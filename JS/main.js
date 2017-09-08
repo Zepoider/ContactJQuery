@@ -259,7 +259,9 @@ function AddContactDrow() {
                     text: '+',
                     on: {
                         click: function () {
-                            AddNumber();
+                            Contact.number.push('');
+                            ResetAddContactWindow();
+                            OpenContactWindow(Contact);
                         }
                     }
                 }).hide()).appendTo('#add-contact');
@@ -313,7 +315,9 @@ function AddContactDrow() {
                     text: '+',
                     on: {
                         click: function () {
-                            AddMail();
+                            Contact.email[Contact.email.length] = '';
+                            ResetAddContactWindow();
+                            OpenContactWindow(Contact);
                         }
                     }
                 }).hide()).appendTo('#add-contact');
@@ -340,18 +344,6 @@ function AddContactDrow() {
             }
         }
     })).appendTo('#add-contact');
-
-
-}
-function AddNumber() {
-    Contact.number.push('');
-    ResetAddContactWindow();
-    OpenContactWindow(Contact);
-}
-function AddMail() {
-    Contact.email[Contact.email.length] = '';
-    ResetAddContactWindow();
-    OpenContactWindow(Contact);
 }
 //Отрисовка списка контактов
 function ContactListDraw(contact) {
