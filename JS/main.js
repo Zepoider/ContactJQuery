@@ -3,6 +3,7 @@ let ContactsArray = [];
 let Contact;
 let createNewContact = true;
 let SearchArray = [];
+let emailValidation = /([\w\.\-_]+)?\w+@[\w-_]+(\.\w+){1,}/img;
 //Блок событий при отображении списка контактов
 $('#add-contact-button').click(function () {
     $('#header').animate({opacity: 0});
@@ -70,10 +71,10 @@ function SaveContact() {
     let numberId0 = document.getElementById('number0');
     let emailId0 = document.getElementById('email0');
 
-    //SaveInputValue();
 
         if(inputName.value != '' && numberId0.value != '' && emailId0.value != '')
         {
+
 
             for (let i = 0; i < Contact.number.length; i++){
                 if (Contact.number[i] == '')
@@ -93,7 +94,14 @@ function SaveContact() {
         ContactsArray.push(Contact);
     }
 
-    ReloadContactList(ContactsArray)
+    ReloadContactList(ContactsArray);
+            for (let i = 0; i < Contact.email.length; i++){
+                if (!$('#email'+i).val().match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/))
+                {
+                    $('#email'+i).css('color', '#FF0C0E');
+                    return;
+                }
+            }
     localStorage.setItem('Contacts', JSON.stringify(ContactsArray));
 
     CloseContactWindow();
