@@ -90,11 +90,6 @@ function SaveContact() {
                     i--;
                 }
             }
-    if (createNewContact) {
-        ContactsArray.push(Contact);
-    }
-
-    ReloadContactList(ContactsArray);
             for (let i = 0; i < Contact.email.length; i++){
                 if (!$('#email'+i).val().match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/))
                 {
@@ -102,6 +97,11 @@ function SaveContact() {
                     return;
                 }
             }
+    if (createNewContact) {
+        ContactsArray.push(Contact);
+    }
+
+            ReloadContactList(ContactsArray);
     localStorage.setItem('Contacts', JSON.stringify(ContactsArray));
 
     CloseContactWindow();
