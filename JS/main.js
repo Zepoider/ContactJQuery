@@ -11,26 +11,23 @@ $('#add-contact-button').click(function () {
         AddNewContact();
     });
 });
-let inputSearch = document.getElementById('inputsearch');
-inputSearch.oninput = function () {
+$('#inputsearch').on( {
+        input: function () {
+            SearchArray.length = 0;
+            let matchValue = /^[a-zA-Z\s]*$/;
+            if (!this.value.match(matchValue) || this.value.length > 22) {
+                this.value = this.value.substr(0, this.value.length - 1);
+            }
 
-    SearchArray.length = 0;
-
-    let matchValue = /^[a-zA-Z\s]*$/;
-    if (!inputSearch.value.match(matchValue) || inputSearch.value.length > 22)
-    {
-        inputSearch.value = inputSearch.value.substr(0, inputSearch.value.length - 1);
-    }
-
-    for (let i = 0; i < ContactsArray.length; i++)
-    {
-        if (ContactsArray[i].name.toLowerCase().indexOf(inputSearch.value.toLowerCase()) ==  0 )
-        {
-            SearchArray.push(ContactsArray[i]);
+            for (let i = 0; i < ContactsArray.length; i++) {
+                if (ContactsArray[i].name.toLowerCase().indexOf(this.value.toLowerCase()) == 0) {
+                    SearchArray.push(ContactsArray[i]);
+                }
+            }
+            ReloadContactList(SearchArray);
         }
-    }
-    ReloadContactList(SearchArray);
-}
+});
+
 
 //Подтягивание базы контактов при первом запуске/релоаде
     if (localStorage.getItem('Contacts'))
@@ -67,15 +64,12 @@ function EditContact(id) {
 }
 function SaveContact() {
 
-    let inputName = document.getElementById('name');
-    let numberId0 = document.getElementById('number0');
-    let emailId0 = document.getElementById('email0');
+    let inputName = $('#name');
+    let numberId0 = $('#number0');
+    let emailId0 = $('#email0');
 
-
-        if(inputName.value != '' && numberId0.value != '' && emailId0.value != '')
+        if(inputName.val() != '' && numberId0.val() != '' && emailId0.val() != '')
         {
-
-
             for (let i = 0; i < Contact.number.length; i++){
                 if (Contact.number[i] == '')
                 {
@@ -107,14 +101,14 @@ function SaveContact() {
     CloseContactWindow();
         }
         else {
-    if (numberId0.value == ''){
-        numberId0.setAttribute('placeholder', 'Enter phone number');
+    if (numberId0.val() == ''){
+        numberId0.attr('placeholder', 'Enter phone number');
     }
-    if (emailId0.value == '') {
-        emailId0.setAttribute('placeholder', 'Enter e-mail address')
+    if (emailId0.val() == '') {
+        emailId0.attr('placeholder', 'Enter e-mail address');
     }
-    if (inputName.value == ''){
-        inputName.setAttribute('placeholder', 'Enter contact name')
+    if (inputName.val() == ''){
+        inputName.attr('placeholder', 'Enter contact name');
     }
 }
 }
